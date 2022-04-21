@@ -9,6 +9,7 @@
     background-color: var(--dark_bg);
     align-items: center;
     font-family: "Rajdhani";
+    z-index: 1000;
     div {
         text-align: center;
         padding: 1.45rem;
@@ -79,9 +80,9 @@
     }
 }
 
-#footer.light {
+.light#footer {
     background-color: var(--light_bg);
-    border-top-color: 1px solid var(--light_border);
+    border-top-color: var(--light_border);
 
     h4 {
         color: var(--black);
@@ -97,4 +98,23 @@
     div {
         border-right: 1px solid var(--light_border);
     }
+}
+
+//미디어 쿼리
+@media (max-width: 1008px){
+    #footer {
+        div:nth-child(1) {
+            h4 {
+                display: none;
+            }
+        }
+        div:nth-child(2) {display: none;}
+        div:nth-child(3) { display: none;}
+
+    }
+}
+
+//푸터 애니메이션
+#footer {
+    bottom: -100%;
 }
