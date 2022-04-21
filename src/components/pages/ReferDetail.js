@@ -32,7 +32,7 @@ class ReferDetail extends React.Component {
                 bottom: 0,
                 delay: 0.4
             });
-            gsap.to(".refer__cont", {
+            gsap.to(".refer__inner", {
                 duration: 0.5,
                 y: 0,
                 opacity: 1,

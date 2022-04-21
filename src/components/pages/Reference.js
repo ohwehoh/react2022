@@ -43,7 +43,7 @@ class Reference extends React.Component {
                 delay: 1.3,
                 ease: "sine.out"
             });
-            gsap.to(".refer__cont", {
+            gsap.to(".refer__inner", {
                 duration: 0.5,
                 y: 0,
                 opacity: 1,
