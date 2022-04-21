@@ -3,7 +3,7 @@
         "type" : "html",
         "vr" : "20220420_1",
         "author" : "yeonwooLee",
-        "refer" : [
+        "htmlRefer" : [
             {
                 "id" : 1,
                 "title" : "<a>",
