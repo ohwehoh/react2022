@@ -106,7 +106,30 @@
         }
 
         td {
-            
+            ul {
+                li {
+                    transition: all 0.3s;
+                    &::before {
+                        content: '';
+                        display: inline-block;
+                        width: 0.5rem;
+                        height: 0.5rem;
+                        background: #fff;
+                        border-radius: 50%;
+                        margin-right: 0.5rem;
+                    }
+                    &:hover {
+                        color: burlywood;
+                    }
+                }
+            }
+            a {
+                display: block;
+                transition: all 0.3s;
+                &:hover {
+                    color: burlywood;
+                }
+            }
         }
 
         thead {

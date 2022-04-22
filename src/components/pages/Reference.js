@@ -97,7 +97,7 @@ class Reference extends React.Component {
                                                     desc = {refer.desc}
                                                     use = {refer.use}
 
-                                                    dese2 = {refer.desc2}
+                                                    desc2 = {refer.desc2}
                                                     element = {refer.element}
                                                     tag = {refer.tag}
                                                     version = {refer.version}

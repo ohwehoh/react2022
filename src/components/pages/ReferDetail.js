@@ -11,6 +11,12 @@ import { gsap } from "gsap";
 //   )
 // }
 
+function List({txt}){
+    return (
+        <li>{txt}</li>
+    )
+}
+
 class ReferDetail extends React.Component {
     componentDidMount(){
         const {location, history} = this.props;
@@ -51,15 +57,19 @@ class ReferDetail extends React.Component {
         } else {
             return (
                 <>
-                    <Header color="light"/>
+                    <Header/>
                     <Contents>
                         <section className='refer__cont'>
                             <div className='container'>
                                 <div className="refer__inner">
                                     <div className="refer__table">
                                         <h3>{location.state.title}</h3>
-                                        <p>{location.state.desc}</p>
+                                        <p>{location.state.desc2}</p>
                                         <table className='table'>
+                                            <colgroup>
+                                                <col style={{width:'20%'}}/>
+                                                <col style={{width:'80%'}}/>
+                                            </colgroup>
                                             <thead>
                                                 <tr>
                                                     <th>특징</th>
@@ -87,6 +97,67 @@ class ReferDetail extends React.Component {
                                                     <th>사용성</th>
                                                     <td>{location.state.use}</td>
                                                 </tr>
+                                                {/* {location.state.image.length > 1 &&
+                                                    <tr>
+                                                        <th>이미지</th>
+                                                        <td><img src={location.state.image} alt={location.state.title + "이미지"} /></td>
+                                                        <td>{}</td>
+                                                    </tr>
+                                                } */}
+                                                <tr>
+                                                    <th>참고사이트</th>
+                                                    <td><a href={location.state.link} target='_blank'>{location.state.link}</a></td>
+                                                </tr>
+                                                {location.state.Definition.length > 1 &&
+                                                    <tr>
+                                                        <th>정의</th>
+                                                        <td>
+                                                            <ul>
+                                                            {location.state.Definition.map((txt) => (
+                                                                <List key={txt} txt={txt} />
+                                                            ))}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                {location.state.Related.length > 1 &&
+                                                    <tr>
+                                                        <th>관계</th>
+                                                        <td>
+                                                            <ul>
+                                                            {location.state.Related.map((txt) => (
+                                                                <List key={txt} txt={txt} />
+                                                            ))}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                {location.state.Accessibility.length > 1 &&
+                                                    <tr>
+                                                        <th>접근성</th>
+                                                        <td>
+                                                            <ul>
+                                                            {location.state.Accessibility.map((txt) => (
+                                                                <List key={txt} txt={txt} />
+                                                            ))}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                {location.state.mdn.length > 1 || location.state.w3c.length > 1 ?
+                                                    <tr>
+                                                        <th>참고사이트2</th>
+                                                        <td>
+                                                            {location.state.mdn.length > 1 && <a href={location.state.mdn} target='_blank'>mdn</a>}
+                                                            {location.state.w3c.length > 1 && <a href={location.state.w3c} target='_blank'>w3c</a>}
+                                                        </td>
+                                                    </tr>
+                                                    : null
+                                                }
+                                                {/* <tr>
+                                                    <th>참고사이트2</th>
+                                                    <td>{location.state.mdn}, {location.state.w3c}</td>
+                                                </tr> */}
                                             </tbody>
                                         </table>
                                     </div>
@@ -94,7 +165,7 @@ class ReferDetail extends React.Component {
                             </div>
                         </section>
                     </Contents>
-                    <Footer color="light"/>
+                    <Footer/>
                 </>
             )
         }
