@@ -120,6 +120,9 @@
                     }
                     &:hover {
                         color: burlywood;
+                        &::before {
+                            background-color: burlywood;
+                        }
                     }
                 }
             }
