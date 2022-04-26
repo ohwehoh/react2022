@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Header from "../layout/Header";
 import Contents from "../layout/Contents";
-import ContTitle from '../layout/ContTitle';
+import Footer from "../layout/Footer";
+import ContTitle from "../layout/ContTitle";
+import MovieCont from "../includes/MovieCont";
 import Contact from '../layout/Contact';
-import Footer from "../layout/Footer"
-import YoutubeList from "../includes/YoutubeList";
-import YoutubeSearch from "../includes/YoutubeSearch";
 import Loading from "../basics/Loading";
 import { gsap } from "gsap";
+import YoutubeSearch from "../includes/YoutubeSearch";
 
-//require('dotenv').config() //npm i dotenv
+// function Script(){
+//     return (
+//         <>
+//             <Header color="light"/>
+//             <Contents color="light">
+//                 <ContTitle title={["script","javascript"]} color="light"/>
+//                 <ScriptCont />
+//             </Contents>
+//             <Contact />
+//             <Footer color="light"/>
+//         </>
+//     )
+// }
 
-function Youtube() {
-    const [videos, setVideos] = useState([]);   //왼쪽,오른쪽 성질이 다르지만 아무튼 오른쪽에 있는 값 왼쪽에서 불러오기 가능
+function Movie(){
+    const [videos, setVideos] = useState([]);
 
     const mainAnimation = () => {
         setTimeout(() => {
@@ -49,24 +61,25 @@ function Youtube() {
                 delay: 1.6,
                 ease: "sine.out"
             });
-            gsap.to(".youtube__list", {
-                duration: 0.5,
-                y: 0,
+            gsap.to(".movie__inner", {
+                duration: 0.6,
                 opacity: 1,
+                y: 0,
                 delay: 1.9,
-                ease: "sine.out"
+                ease: "slow(0.7, 0.7, false)"
             });
         },2000)
     }
+
     const search = (query) => {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
           };
           
-          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=30&q=${query}&key=${process.env.REACT_APP_API}`, requestOptions)
+          fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE}&query=${query}`, requestOptions)
             .then(response => response.json())
-            .then(result => setVideos(result.items))
+            .then(result => setVideos(result.results))
             .catch(error => console.log('error', error));
     }
 
@@ -76,33 +89,27 @@ function Youtube() {
             redirect: 'follow'
           };
           
-          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=30&q=webfrontend&key=${process.env.REACT_APP_API}`, requestOptions)
+          fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE}&query=frozen`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setVideos(result.items);
+                setVideos(result.results)
                 mainAnimation();
             })
             .catch(error => console.log('error', error));
     }, []);
-    return (
-    <>
-        <Loading />
-        <Header />
-        <Contents>
-            <ContTitle title={["Youtube","reference"]}/>
-            <section className="youtube__cont">
-                <div className="container">
-                    <div className="youtube__inner">
-                        <YoutubeSearch onSearch={search}/>
-                        <YoutubeList videos={videos}/>
-                    </div>
-                </div>
-            </section>
-            <Contact />
-        </Contents>
-        <Footer />
-    </>
-  )
-}
 
-export default Youtube
+    return (
+        <>
+            <Loading color="light"/>
+            <Header color="light"/>
+            <Contents color="light">
+                <ContTitle title={["Movie","reference"]} color="light"/>
+                <YoutubeSearch onSearch={search} color="light"/>
+                <MovieCont list={videos}/>
+                <Contact />
+            </Contents>
+            <Footer color="light"/>
+        </>
+      )
+}
+export default Movie;

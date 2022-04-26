@@ -64,7 +64,12 @@ class ReferDetail extends React.Component {
                                 <div className="refer__inner">
                                     <div className="refer__table">
                                         <h3>{location.state.title}</h3>
-                                        <p>{location.state.desc2}</p>
+                                        <div className="img_p_wrap">
+                                            {location.state.image.length > 1 &&
+                                                <img src={location.state.image} alt={location.state.title + "이미지"} />
+                                            }
+                                            <p>{location.state.desc2}</p>
+                                        </div>
                                         <table className='table'>
                                             <colgroup>
                                                 <col style={{width:'20%'}}/>
@@ -104,10 +109,6 @@ class ReferDetail extends React.Component {
                                                         <td>{}</td>
                                                     </tr>
                                                 } */}
-                                                <tr>
-                                                    <th>참고사이트</th>
-                                                    <td><a href={location.state.link} target='_blank'>{location.state.link}</a></td>
-                                                </tr>
                                                 {location.state.Definition.length > 1 &&
                                                     <tr>
                                                         <th>정의</th>

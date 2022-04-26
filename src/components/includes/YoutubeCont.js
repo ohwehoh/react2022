@@ -1,14 +1,14 @@
 import React from 'react'
+// import YoutubeSearch from "../includes/YoutubeSearch";
+import YoutubeList from '../includes/YoutubeList';
 
-function YoutubeCont() {
+function YoutubeCont({list}) {
   return (
     <section className="youtube__cont">
       <div className="container">
         <div className="youtube__inner">
-          <article>
-            <h2>웹표준 사이트 만들기</h2>
-            <img src="" alt="" />
-          </article>
+          {/* <YoutubeSearch /> */}
+          <YoutubeList items={list}/>
         </div>
       </div>
     </section>
